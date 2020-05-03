@@ -1,4 +1,3 @@
-
 BOARD_WIDTH = 3
 BOARD_HEIGHT = 3
 player1 = 'X'
@@ -54,27 +53,40 @@ def make_move(board, coords, player):
 
     return board
 
+def get_player_turn(turnCount):
+    if turnCount % 2 == 0:
+        return player1
+    else: return player2
+
+
 def is_valid(board, coords):
     x = coords[0]
     y = coords[1]
-
     l = [0, 1, 2]
-    
-    if(board[x][y] is None and x and y in l):
-        print('not a valid move') 
-        return False
 
-    else:
-        print('valid move') 
+    if(x in l and y in l and board[x][y] == None):
         return True
-        
-board = new_board()    
-render(board)
-coords = get_move()
-print(is_valid(board, coords))
-board = make_move(board, coords, 'X')
-render(board)
+    else: return False
+
+def play():
+
+    turnCount = 0
+    board = new_board()    
+
+    while True:
+        render(board)
+        coords = get_move()
+
+        while True:
+            if is_valid(board, coords) == True:
+                board = make_move(board, coords, get_player_turn)
+                break
+
+            else:
+                print('invalid move try again')
+                coords = get_move()
+        turnCount = turnCount + 1
+
+play()
 
 
-
-    

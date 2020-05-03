@@ -1,4 +1,3 @@
-
 BOARD_WIDTH = 3
 BOARD_HEIGHT = 3
 player1 = 'X'
@@ -67,14 +66,3 @@ def is_valid(board, coords):
     else:
         print('valid move') 
         return True
-        
-board = new_board()    
-render(board)
-coords = get_move()
-print(is_valid(board, coords))
-board = make_move(board, coords, 'X')
-render(board)
-
-
-
-    

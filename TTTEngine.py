@@ -1,7 +1,7 @@
+import players
+
 BOARD_WIDTH = 3
 BOARD_HEIGHT = 3
-player1 = 'X'
-player2 = 'Y'
 
 def new_board():
     
@@ -37,14 +37,9 @@ def render(board):
         row_num += 1
     print('  ------')
 
-def get_move():
-    coords = []
-    print('X coord: ')
-    coords.append(int(input()))
-    print('Y coord: ')
-    coords.append(int(input()))
-
-    return coords
+def get_move(player_name):
+    if player_name == 'human':
+        return players.human_player()
 
 def make_move(board, coords, player):
     x = coords[0]
@@ -68,25 +63,38 @@ def is_valid(board, coords):
         return True
     else: return False
 
-def play():
+def check_winner(board, coords, current_player):
+def get_winning_coords():
+    rows = []
+    for y in range(0, BOARD_HEIGHT):
+        row = []
+        for x in range(0, BOARD_WIDTH)
+            row.append(y, x)
+        rows.append(row)
+
+
+
+def play(player1, player2):
+
+    players = [
+        (player1, 'X'),
+        (player2, 'O')
+    ]
 
     turnCount = 0
     board = new_board()    
 
     while True:
+        current_player, currnet_player_id = players[turnCount % 2]
         render(board)
-        coords = get_move()
+        coords = get_move(current_player)
 
         while True:
             if is_valid(board, coords) == True:
-                board = make_move(board, coords, get_player_turn)
+                board = make_move(board, coords, currnet_player_id)
                 break
 
             else:
                 print('invalid move try again')
-                coords = get_move()
+                coords = get_move(current_player)
         turnCount = turnCount + 1
-
-play()
-
-
